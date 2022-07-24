@@ -25,12 +25,24 @@ export class ThemeService {
         id: 1,
         nombre: 'rojo',
         colorPrincipal: 'danger',
-        colorSecundario: 'light',
+        colorSecundario: 'dark',
       },
       {
         id: 2,
         nombre: 'verde',
         colorPrincipal: 'success',
+        colorSecundario: 'dark',
+      },
+      {
+        id: 3,
+        nombre: 'naranja',
+        colorPrincipal: 'warning',
+        colorSecundario: 'light',
+      },
+      {
+        id: 4,
+        nombre: 'gris',
+        colorPrincipal: 'light',
         colorSecundario: 'light',
       },
     ];
