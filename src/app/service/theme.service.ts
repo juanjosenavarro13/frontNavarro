@@ -9,16 +9,39 @@ export class ThemeService {
   colorPrincipal$ = this.colorPrincipal.asObservable();
   private colorSecundario = new BehaviorSubject<string>('dark');
   colorSecundario$ = this.colorSecundario.asObservable();
-  private tema: number;
+
+  private temaOptions: any;
+  private temaActual: number = 0;
 
   constructor() {
+    this.temaOptions = [
+      {
+        id: 0,
+        nombre: 'azul',
+        colorPrincipal: 'primary',
+        colorSecundario: 'dark',
+      },
+      {
+        id: 1,
+        nombre: 'rojo',
+        colorPrincipal: 'danger',
+        colorSecundario: 'light',
+      },
+      {
+        id: 2,
+        nombre: 'verde',
+        colorPrincipal: 'success',
+        colorSecundario: 'light',
+      },
+    ];
+
     if (localStorage.getItem('tema')) {
-      this.tema = Number(localStorage.getItem('tema'));
+      this.temaActual = Number(localStorage.getItem('tema'));
+      this.cambiarTema(this.temaActual);
     } else {
-      this.tema = 1;
-      localStorage.setItem('tema', this.tema.toString());
+      this.temaActual = 0;
+      localStorage.setItem('tema', '0');
     }
-    this.cambiarTema(this.tema);
   }
 
   private setColorPrincipal(color: string) {
@@ -26,6 +49,10 @@ export class ThemeService {
   }
   private setColorSecundario(color: string) {
     this.colorSecundario.next(color);
+  }
+
+  getTemasOptions() {
+    return this.temaOptions;
   }
 
   getColorPrincipal() {
@@ -36,20 +63,14 @@ export class ThemeService {
     return this.colorSecundario.value;
   }
 
-  getTema() {
-    return this.tema;
+  getTemaActual() {
+    return this.temaActual;
   }
 
   cambiarTema(tema: number) {
+    this.temaActual = tema;
     localStorage.setItem('tema', tema.toString());
-    if (tema == 1) {
-      this.setColorPrincipal('primary');
-      this.setColorSecundario('dark');
-    }
-
-    if (tema == 2) {
-      this.setColorPrincipal('danger');
-      this.setColorSecundario('light');
-    }
+    this.setColorPrincipal(this.temaOptions[tema].colorPrincipal);
+    this.setColorSecundario(this.temaOptions[tema].colorSecundario);
   }
 }
