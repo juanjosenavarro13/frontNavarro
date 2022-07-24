@@ -123,6 +123,7 @@
   },
   "defaultProject": "frontNavarro",
   "cli": {
+    "analytics": "7901c78c-c998-4b54-8ebc-712478eb09c0",
     "defaultCollection": "@angular-eslint/schematics"
   }
 }
