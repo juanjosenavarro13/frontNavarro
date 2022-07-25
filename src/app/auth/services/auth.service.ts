@@ -18,11 +18,27 @@ export class AuthService {
   constructor(private _httpAuthService: AuthHttpService, private router: Router) {
     if (localStorage.getItem('token')) {
       this.setToken(JSON.parse(localStorage.getItem('token') || '{}'));
+      this.me().subscribe(usuario => {
+        this.usuario.next(usuario);
+      });
     }
+  }
+  private me() {
+    return this._httpAuthService.me(this.getToken().access_token);
+  }
+
+  getUsuario() {
+    return this.usuario.value;
   }
 
   getLogeado(): boolean {
     return this.logeado.value;
+  }
+
+  setToken(token: tokenModel) {
+    this.token.next(token);
+    this.logeado.next(true);
+    localStorage.setItem('token', JSON.stringify(token));
   }
 
   getToken(): tokenModel {
@@ -31,12 +47,6 @@ export class AuthService {
 
   login(usuario: usuario): Observable<loginResponse> {
     return this._httpAuthService.login(usuario);
-  }
-
-  setToken(token: tokenModel) {
-    this.token.next(token);
-    this.logeado.next(true);
-    localStorage.setItem('token', JSON.stringify(token));
   }
 
   logout() {
