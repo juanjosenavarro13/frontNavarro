@@ -1,1 +1,23 @@
-<p>login works!</p>
+<form #formLogin="ngForm" (ngSubmit)="login(formLogin.value)">
+  <div class="row justify-content-center">
+    <div class="mb-3 col-lg-3 col-sm-12">
+      <label class="form-label">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        ngModel
+        name="email"
+        #email="ngModel"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        required />
+      <label class="form-label">Contraseña</label>
+      <input type="password" class="form-control" ngModel name="password" #password="ngModel" minlength="6" required />
+    </div>
+    <div class="mb-3 col-12 text-center">
+      <button type="submit" class="btn btn-outline-{{ colorPrincipal }} mt-3 mx-3" [disabled]="formLogin.invalid">
+        Entrar
+      </button>
+      <a class="btn btn-outline-{{ colorSecundario }} mt-3 mx-3">Registrarme</a>
+    </div>
+  </div>
+</form>

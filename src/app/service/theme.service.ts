@@ -40,34 +40,28 @@ export class ThemeService {
       },
       {
         id: 3,
-        nombre: 'naranja',
-        colorPrincipal: 'warning',
-        colorSecundario: 'light',
-        colorSecundario2: 'dark',
-      },
-      {
-        id: 4,
-        nombre: 'gris',
-        colorPrincipal: 'light',
-        colorSecundario: 'light',
-        colorSecundario2: 'dark',
-      },
-      {
-        id: 5,
         nombre: 'negro',
         colorPrincipal: 'dark',
         colorSecundario: 'dark',
-        colorSecundario2: 'white',
+        colorSecundario2: 'light',
       },
     ];
 
     if (localStorage.getItem('tema')) {
       this.temaActual = Number(localStorage.getItem('tema'));
-      this.cambiarTema(this.temaActual);
+      if (this.temaActual <= this.temaOptions.length) {
+        this.cambiarTema(this.temaActual);
+      } else {
+        this.reiniciarTema();
+      }
     } else {
-      this.temaActual = 0;
-      localStorage.setItem('tema', '0');
+      this.reiniciarTema();
     }
+  }
+
+  private reiniciarTema() {
+    this.temaActual = 0;
+    localStorage.setItem('tema', '0');
   }
 
   private setColorPrincipal(color: string) {

@@ -1,4 +1,5 @@
-import { HttpClient } from '@angular/common/http';
+import { meResponse } from './../models/authModel';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -12,5 +13,14 @@ export class AuthHttpService {
 
   login(usuario: usuario): Observable<loginResponse> {
     return this._http.post<loginResponse>(environment.apiUrl + 'login', usuario);
+  }
+
+  me(token: string): Observable<meResponse> {
+    let bearer = `Bearer ${token}`;
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: bearer,
+    });
+    return this._http.post<meResponse>(environment.apiUrl + 'me', {}, { headers });
   }
 }
