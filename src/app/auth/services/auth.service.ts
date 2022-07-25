@@ -18,9 +18,14 @@ export class AuthService {
   constructor(private _httpAuthService: AuthHttpService, private router: Router) {
     if (localStorage.getItem('token')) {
       this.setToken(JSON.parse(localStorage.getItem('token') || '{}'));
-      this.me().subscribe(usuario => {
-        this.usuario.next(usuario);
-      });
+      this.me().subscribe(
+        usuario => {
+          this.usuario.next(usuario);
+        },
+        error => {
+          this.logout();
+        }
+      );
     }
   }
   private me() {

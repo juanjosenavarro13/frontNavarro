@@ -1,6 +1,7 @@
 <form #formLogin="ngForm" (ngSubmit)="login(formLogin.value)">
   <div class="row justify-content-center">
     <div class="mb-3 col-lg-3 col-sm-12">
+      <div *ngIf="err" class="alert alert-danger" role="alert">No hemos podido identificarte.</div>
       <label class="form-label">Email</label>
       <input
         type="email"

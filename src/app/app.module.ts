@@ -9,9 +9,10 @@ import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { FormsModule } from '@angular/forms';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
-  declarations: [AppComponent, ErrorComponent, HomeComponent, HeaderComponent, FooterComponent],
+  declarations: [AppComponent, ErrorComponent, HomeComponent, HeaderComponent, FooterComponent, SpinnerComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],

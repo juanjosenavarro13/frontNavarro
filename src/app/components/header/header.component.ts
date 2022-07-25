@@ -15,23 +15,24 @@ export class HeaderComponent implements OnInit {
   temaActual: number;
   colorPrimario: string;
   colorSecundario: string;
+  colorSecundario2: string;
   nameApp: string;
   usuario: meResponse;
   loading: boolean;
   constructor(private themeService: ThemeService, private authservice: AuthService) {
-    this.loading = false;
+    this.loading = true;
     this.usuario = this.authservice.getUsuario();
     this.nameApp = environment.nameApp;
     this.temaOptions = this.themeService.getTemasOptions();
     this.temaActual = this.themeService.getTemaActual();
     this.colorPrimario = this.themeService.getColorPrincipal();
     this.colorSecundario = this.themeService.getColorSecundario();
+    this.colorSecundario2 = this.themeService.getColorSecundario2();
   }
 
   ngOnInit(): void {
     this.load();
     this.getUsuario();
-    this.loading = true;
   }
 
   private load() {
@@ -41,11 +42,15 @@ export class HeaderComponent implements OnInit {
     this.themeService.colorSecundario$.subscribe(color => {
       this.colorSecundario = color;
     });
+    this.themeService.colorSecundario2$.subscribe(color => {
+      this.colorSecundario2 = color;
+    });
   }
 
   private getUsuario() {
     this.authservice.usuario$.subscribe(usuario => {
       this.usuario = usuario;
+      this.loading = false;
     });
   }
 

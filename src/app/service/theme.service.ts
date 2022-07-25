@@ -19,8 +19,8 @@ export class ThemeService {
     this.temaOptions = [
       {
         id: 0,
-        nombre: 'azul',
-        colorPrincipal: 'primary',
+        nombre: 'negro',
+        colorPrincipal: 'dark',
         colorSecundario: 'dark',
         colorSecundario2: 'light',
       },
@@ -40,8 +40,8 @@ export class ThemeService {
       },
       {
         id: 3,
-        nombre: 'negro',
-        colorPrincipal: 'dark',
+        nombre: 'azul',
+        colorPrincipal: 'primary',
         colorSecundario: 'dark',
         colorSecundario2: 'light',
       },

@@ -12,7 +12,9 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit {
   colorPrincipal: string;
   colorSecundario: string;
+  err: boolean;
   constructor(private AuthService: AuthService, private themeService: ThemeService, private router: Router) {
+    this.err = false;
     this.colorPrincipal = this.themeService.getColorPrincipal();
     this.colorSecundario = this.themeService.getColorSecundario();
     this.themeService.colorPrincipal$.subscribe(color => {
@@ -33,6 +35,10 @@ export class LoginComponent implements OnInit {
       },
       error => {
         this.AuthService.logout();
+        this.err = true;
+        setTimeout(() => {
+          this.err = false;
+        }, 4000);
       }
     );
   }
