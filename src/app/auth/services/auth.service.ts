@@ -7,7 +7,10 @@ import { AuthHttpService } from './auth-http.service';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private _httpAuthService: AuthHttpService) {}
+  private token: string;
+  constructor(private _httpAuthService: AuthHttpService) {
+    this.token = '';
+  }
 
   login(usuario: usuario): Observable<loginResponse> {
     return this._httpAuthService.login(usuario);

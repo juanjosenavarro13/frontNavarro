@@ -1,15 +1,29 @@
 import { Component, OnInit } from '@angular/core';
+import { ThemeService } from 'src/app/service/theme.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss']
+  styleUrls: ['./footer.component.scss'],
 })
 export class FooterComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  nameApp: string;
+  date: Date;
+  colorPrincipal: string;
+  colorSecundario: string;
+  constructor(private themeService: ThemeService) {
+    this.date = new Date();
+    this.nameApp = environment.nameApp;
+    this.colorPrincipal = this.themeService.getColorPrincipal();
+    this.colorSecundario = this.themeService.getColorSecundario2();
+    this.themeService.colorPrincipal$.subscribe(color => {
+      this.colorPrincipal = color;
+    });
+    this.themeService.colorSecundario2$.subscribe(color => {
+      this.colorSecundario = color;
+    });
   }
 
+  ngOnInit(): void {}
 }

@@ -9,6 +9,8 @@ export class ThemeService {
   colorPrincipal$ = this.colorPrincipal.asObservable();
   private colorSecundario = new BehaviorSubject<string>('dark');
   colorSecundario$ = this.colorSecundario.asObservable();
+  private colorSecundario2 = new BehaviorSubject<string>('light');
+  colorSecundario2$ = this.colorSecundario2.asObservable();
 
   private temaOptions: any;
   private temaActual: number = 0;
@@ -20,30 +22,42 @@ export class ThemeService {
         nombre: 'azul',
         colorPrincipal: 'primary',
         colorSecundario: 'dark',
+        colorSecundario2: 'light',
       },
       {
         id: 1,
         nombre: 'rojo',
         colorPrincipal: 'danger',
         colorSecundario: 'dark',
+        colorSecundario2: 'light',
       },
       {
         id: 2,
         nombre: 'verde',
         colorPrincipal: 'success',
         colorSecundario: 'dark',
+        colorSecundario2: 'light',
       },
       {
         id: 3,
         nombre: 'naranja',
         colorPrincipal: 'warning',
         colorSecundario: 'light',
+        colorSecundario2: 'dark',
       },
       {
         id: 4,
         nombre: 'gris',
         colorPrincipal: 'light',
         colorSecundario: 'light',
+        colorSecundario2: 'dark',
+      },
+      {
+        id: 5,
+        nombre: 'negro',
+        colorPrincipal: 'dark',
+        colorSecundario: 'dark',
+        colorSecundario2: 'white',
       },
     ];
 
@@ -63,6 +77,10 @@ export class ThemeService {
     this.colorSecundario.next(color);
   }
 
+  private setColorSecundario2(color: string) {
+    this.colorSecundario2.next(color);
+  }
+
   getTemasOptions() {
     return this.temaOptions;
   }
@@ -74,6 +92,9 @@ export class ThemeService {
   getColorSecundario() {
     return this.colorSecundario.value;
   }
+  getColorSecundario2() {
+    return this.colorSecundario2.value;
+  }
 
   getTemaActual() {
     return this.temaActual;
@@ -84,5 +105,6 @@ export class ThemeService {
     localStorage.setItem('tema', tema.toString());
     this.setColorPrincipal(this.temaOptions[tema].colorPrincipal);
     this.setColorSecundario(this.temaOptions[tema].colorSecundario);
+    this.setColorSecundario2(this.temaOptions[tema].colorSecundario2);
   }
 }
