@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ThemeService } from 'src/app/service/theme.service';
 import { usuario } from '../../models/authModel';
 import { AuthService } from '../../services/auth.service';
@@ -11,7 +12,7 @@ import { AuthService } from '../../services/auth.service';
 export class LoginComponent implements OnInit {
   colorPrincipal: string;
   colorSecundario: string;
-  constructor(private AuthService: AuthService, private themeService: ThemeService) {
+  constructor(private AuthService: AuthService, private themeService: ThemeService, private router: Router) {
     this.colorPrincipal = this.themeService.getColorPrincipal();
     this.colorSecundario = this.themeService.getColorSecundario();
     this.themeService.colorPrincipal$.subscribe(color => {
@@ -27,10 +28,11 @@ export class LoginComponent implements OnInit {
   login(usuario: usuario) {
     this.AuthService.login(usuario).subscribe(
       data => {
-        this.AuthService.setToken(data.access_token);
+        this.AuthService.setToken(data);
+        this.router.navigate(['/']);
       },
       error => {
-        this.AuthService.removeToken();
+        this.AuthService.logout();
       }
     );
   }

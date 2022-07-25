@@ -15,3 +15,7 @@ export class meResponse {
     public updated_at: string
   ) {}
 }
+
+export class tokenModel {
+  constructor(public access_token: string, public token_type: string, public expires_in: number) {}
+}
