@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { ThemeService } from 'src/app/service/theme.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +13,9 @@ export class HeaderComponent implements OnInit {
   temaActual: number;
   colorPrimario: string;
   colorSecundario: string;
-  constructor(private themeService: ThemeService) {
+  nameApp: string;
+  constructor(private themeService: ThemeService, private authservice: AuthService) {
+    this.nameApp = environment.nameApp;
     this.temaOptions = this.themeService.getTemasOptions();
     this.temaActual = this.themeService.getTemaActual();
     this.colorPrimario = this.themeService.getColorPrincipal();
@@ -28,5 +32,9 @@ export class HeaderComponent implements OnInit {
 
   cambiarTema() {
     this.themeService.cambiarTema(this.temaActual);
+  }
+
+  logout() {
+    this.authservice.logout();
   }
 }

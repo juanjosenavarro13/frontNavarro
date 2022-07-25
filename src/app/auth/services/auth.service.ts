@@ -2,6 +2,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { loginResponse, meResponse, tokenModel, usuario } from '../models/authModel';
 import { AuthHttpService } from './auth-http.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,7 @@ export class AuthService {
   private logeado = new BehaviorSubject<boolean>(false);
   logeado$ = this.logeado.asObservable();
 
-  constructor(private _httpAuthService: AuthHttpService) {
+  constructor(private _httpAuthService: AuthHttpService, private router: Router) {
     if (localStorage.getItem('token')) {
       this.setToken(JSON.parse(localStorage.getItem('token') || '{}'));
     }
@@ -42,5 +43,6 @@ export class AuthService {
     this.token.next({} as tokenModel);
     this.logeado.next(false);
     localStorage.removeItem('token');
+    this.router.navigate(['/auth']);
   }
 }
