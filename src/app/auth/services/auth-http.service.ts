@@ -1,4 +1,4 @@
-import { meResponse } from './../models/authModel';
+import { meResponse, registroModel, registroResModel } from './../models/authModel';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -22,5 +22,9 @@ export class AuthHttpService {
       Authorization: bearer,
     });
     return this._http.post<meResponse>(environment.apiUrl + 'me', {}, { headers });
+  }
+
+  registro(usuario: registroModel): Observable<registroResModel> {
+    return this._http.post<registroResModel>(environment.apiUrl + 'register', usuario);
   }
 }

@@ -3,6 +3,23 @@
   <div class="row justify-content-center">
     <div class="mb-3 col-lg-3 col-sm-12">
       <div *ngIf="err" class="alert alert-danger" role="alert">No hemos podido registrarte.</div>
+      <div *ngIf="reg" class="alert alert-success" role="alert">Usuario registrado correctamente</div>
+      <label class="form-label">Nombre</label>
+      <input
+        type="text"
+        class="form-control"
+        [ngClass]="{
+          'border-danger': name.invalid && name.touched
+        }"
+        [ngClass]="{
+          'border-success': name.valid && name.touched
+        }"
+        ngModel
+        name="name"
+        #name="ngModel"
+        minlength="3"
+        maxlength="25"
+        required />
       <label class="form-label">Email</label>
       <input
         type="email"
@@ -32,6 +49,7 @@
         name="password"
         #password="ngModel"
         minlength="6"
+        maxlength="100"
         required />
       <label class="form-label">Confirmar contraseña</label>
       <input
@@ -52,6 +70,7 @@
         name="password_confirmation"
         #password_confirmation="ngModel"
         minlength="6"
+        maxlength="100"
         required />
     </div>
     <div class="mb-3 col-12 text-center">

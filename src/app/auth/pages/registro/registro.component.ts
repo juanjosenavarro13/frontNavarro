@@ -1,6 +1,8 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ThemeService } from 'src/app/service/theme.service';
 import { registroModel } from '../../models/authModel';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-registro',
@@ -9,10 +11,12 @@ import { registroModel } from '../../models/authModel';
 })
 export class RegistroComponent implements OnInit {
   err: boolean;
+  reg: boolean;
   colorPrincipal: string;
   colorSecundario: string;
-  constructor(private themeService: ThemeService) {
+  constructor(private themeService: ThemeService, private authService: AuthService, private router: Router) {
     this.err = false;
+    this.reg = false;
     this.colorPrincipal = this.themeService.getColorPrincipal();
     this.colorSecundario = this.themeService.getColorSecundario();
     this.themeService.colorPrincipal$.subscribe(color => {
@@ -26,6 +30,19 @@ export class RegistroComponent implements OnInit {
   ngOnInit(): void {}
 
   registro(usuario: registroModel) {
-    console.log(usuario);
+    this.authService.registro(usuario).subscribe(
+      data => {
+        this.reg = true;
+        this.err = false;
+
+        setTimeout(() => {
+          this.router.navigate(['/login']);
+        }, 3000);
+      },
+      error => {
+        this.err = true;
+        this.reg = false;
+      }
+    );
   }
 }

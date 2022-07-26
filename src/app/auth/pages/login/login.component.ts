@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
     this.AuthService.login(usuario).subscribe(
       data => {
         this.AuthService.setToken(data);
+        this.AuthService.inicio();
         this.router.navigate(['/']);
       },
       error => {

@@ -1,6 +1,6 @@
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { loginResponse, meResponse, tokenModel, usuario } from '../models/authModel';
+import { loginResponse, meResponse, registroModel, registroResModel, tokenModel, usuario } from '../models/authModel';
 import { AuthHttpService } from './auth-http.service';
 import { Router } from '@angular/router';
 
@@ -16,6 +16,10 @@ export class AuthService {
   logeado$ = this.logeado.asObservable();
 
   constructor(private _httpAuthService: AuthHttpService, private router: Router) {
+    this.inicio();
+  }
+
+  inicio() {
     if (localStorage.getItem('token')) {
       this.setToken(JSON.parse(localStorage.getItem('token') || '{}'));
       this.me().subscribe(
@@ -59,5 +63,9 @@ export class AuthService {
     this.logeado.next(false);
     localStorage.removeItem('token');
     this.router.navigate(['/auth']);
+  }
+
+  registro(usuario: registroModel): Observable<registroResModel> {
+    return this._httpAuthService.registro(usuario);
   }
 }

@@ -22,5 +22,23 @@ export class tokenModel {
 }
 
 export class registroModel {
-  constructor(public email: string, public password: string, public password_confirmation: string) {}
+  constructor(
+    public email: string,
+    public password: string,
+    public password_confirmation: string,
+    public name: string
+  ) {}
+}
+
+export class registroResModel {
+  constructor(
+    public user: {
+      id: number;
+      name: string;
+      email: string;
+      role: string;
+      created_at: string;
+      updated_at: string;
+    }
+  ) {}
 }
