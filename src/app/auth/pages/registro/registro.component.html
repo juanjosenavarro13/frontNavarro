@@ -1,1 +1,67 @@
-<p>registro works!</p>
+<h1 class="display-1 text-center mb-5">Registro</h1>
+<form #formRegistro="ngForm" (ngSubmit)="registro(formRegistro.value)">
+  <div class="row justify-content-center">
+    <div class="mb-3 col-lg-3 col-sm-12">
+      <div *ngIf="err" class="alert alert-danger" role="alert">No hemos podido registrarte.</div>
+      <label class="form-label">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        [ngClass]="{
+          'border-danger': email.invalid && email.touched
+        }"
+        [ngClass]="{
+          'border-success': email.valid && email.touched
+        }"
+        ngModel
+        name="email"
+        #email="ngModel"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        required />
+      <label class="form-label">Contraseña</label>
+      <input
+        type="password"
+        class="form-control"
+        [ngClass]="{
+          'border-danger': (password.invalid && password.touched) || password.value !== password_confirmation.value
+        }"
+        [ngClass]="{
+          'border-success': password.valid && password.touched && password.value === password_confirmation.value
+        }"
+        ngModel
+        name="password"
+        #password="ngModel"
+        minlength="6"
+        required />
+      <label class="form-label">Confirmar contraseña</label>
+      <input
+        type="password"
+        class="form-control"
+        [ngClass]="{
+          'border-danger':
+            (password_confirmation.invalid && password_confirmation.touched) ||
+            password.value !== password_confirmation.value
+        }"
+        [ngClass]="{
+          'border-success':
+            password_confirmation.valid &&
+            password_confirmation.touched &&
+            password.value === password_confirmation.value
+        }"
+        ngModel
+        name="password_confirmation"
+        #password_confirmation="ngModel"
+        minlength="6"
+        required />
+    </div>
+    <div class="mb-3 col-12 text-center">
+      <button
+        type="submit"
+        class="btn btn-outline-{{ colorPrincipal }} mt-3 mx-3"
+        [disabled]="formRegistro.invalid || password.value !== password_confirmation.value">
+        Registrar
+      </button>
+      <a routerLink="/auth/login" class="btn btn-outline-{{ colorSecundario }} mt-3 mx-3">Iniciar Sesión</a>
+    </div>
+  </div>
+</form>

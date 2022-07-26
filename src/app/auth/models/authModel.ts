@@ -20,3 +20,7 @@ export class meResponse {
 export class tokenModel {
   constructor(public access_token: string, public token_type: string, public expires_in: number) {}
 }
+
+export class registroModel {
+  constructor(public email: string, public password: string, public password_confirmation: string) {}
+}

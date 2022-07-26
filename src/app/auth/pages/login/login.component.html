@@ -1,3 +1,4 @@
+<h1 class="display-1 text-center mb-5">Login</h1>
 <form #formLogin="ngForm" (ngSubmit)="login(formLogin.value)">
   <div class="row justify-content-center">
     <div class="mb-3 col-lg-3 col-sm-12">
@@ -18,7 +19,7 @@
       <button type="submit" class="btn btn-outline-{{ colorPrincipal }} mt-3 mx-3" [disabled]="formLogin.invalid">
         Entrar
       </button>
-      <a class="btn btn-outline-{{ colorSecundario }} mt-3 mx-3">Registrarme</a>
+      <a routerLink="/auth/registro" class="btn btn-outline-{{ colorSecundario }} mt-3 mx-3">Registrarme</a>
     </div>
   </div>
 </form>
