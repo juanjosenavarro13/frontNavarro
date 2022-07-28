@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ThemeService } from 'src/app/service/theme.service';
+import { ThemeService } from 'src/app/shared/service/theme.service';
 import { usuario } from '../../models/authModel';
 import { AuthService } from '../../services/auth.service';
 

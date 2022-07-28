@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { ThemeService } from 'src/app/service/theme.service';
+import { ThemeService } from 'src/app/shared/service/theme.service';
 import { registroModel } from '../../models/authModel';
 import { AuthService } from '../../services/auth.service';
 

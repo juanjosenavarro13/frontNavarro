@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ThemeService } from 'src/app/service/theme.service';
+import { ThemeService } from 'src/app/shared/service/theme.service';
 
 @Component({
   selector: 'app-admin-header',

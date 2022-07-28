@@ -1,9 +1,8 @@
-import { meResponse } from './../../auth/models/authModel';
 import { Component, OnInit } from '@angular/core';
-import { usuario } from 'src/app/auth/models/authModel';
+import { meResponse } from './../../auth/models/authModel';
 import { AuthService } from 'src/app/auth/services/auth.service';
-import { ThemeService } from 'src/app/service/theme.service';
 import { environment } from 'src/environments/environment';
+import { ThemeService } from '../service/theme.service';
 
 @Component({
   selector: 'app-header',

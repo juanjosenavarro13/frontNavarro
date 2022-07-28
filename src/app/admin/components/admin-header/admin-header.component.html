@@ -23,6 +23,7 @@
         <a
           class="dropdown-item text-{{ colorPrincipal }}"
           routerLink="/admin/usuarios/ver"
+          [ngClass]="{ active: usuariosVer.isActive }"
           routerLinkActive
           #usuariosVer="routerLinkActive"
           >Ver</a
@@ -32,6 +33,7 @@
         <a
           class="dropdown-item text-{{ colorPrincipal }}"
           routerLink="/admin/usuarios/registrar"
+          [ngClass]="{ active: usuariosRegistrar.isActive }"
           routerLinkActive
           #usuariosRegistrar="routerLinkActive"
           >Registrar</a
