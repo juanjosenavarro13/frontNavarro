@@ -1,6 +1,6 @@
 <app-admin-header></app-admin-header>
-
-<table class="table">
+<app-spinner [color]="colorPrincipal" *ngIf="loading"></app-spinner>
+<table class="table table-responsive" *ngIf="!loading && usuarios">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -10,11 +10,29 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+    <tr *ngFor="let u of usuarios.data">
+      <th scope="row">{{ u.id }}</th>
+      <td>
+        <a class="text-{{ colorPrincipal }} fw-bold" routerLink="/admin/usuarios/editar/{{ u.id }}">{{ u.name }}</a>
+      </td>
+      <td>{{ u.email }}</td>
+      <td>{{ u.role }}</td>
     </tr>
   </tbody>
 </table>
+
+<nav *ngIf="!loading">
+  <ul class="pagination justify-content-center">
+    <li class="page-item">
+      <a class="page-link btn text-{{ colorPrincipal }}" (click)="pagAnterior()">Anterior</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link btn text-{{ colorPrincipal }} active">{{ usuarios.current_page }}</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link btn text-{{ colorPrincipal }}" (click)="pagSiguiente()">Siguiente</a>
+    </li>
+  </ul>
+  <p class="m-0 p-0">Total de usuarios: {{ usuarios.total }}</p>
+  <p class="m-0 p-0">Total paginas: {{ usuarios.last_page }}</p>
+</nav>

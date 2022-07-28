@@ -8,3 +8,8 @@
   color: black;
   background-color: #e9ecef;
 }
+
+.page-link.active, .active > .page-link{
+  background-color: #e9ecef;
+  border-color: #b6b7b8;
+}

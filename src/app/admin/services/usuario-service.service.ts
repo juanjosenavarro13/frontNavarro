@@ -12,4 +12,8 @@ export class UsuarioServiceService {
   getUsuarios(): Observable<usuariosResModel> {
     return this.usuarioService.getUsuarios();
   }
+
+  changePage(url: string) {
+    return this.usuarioService.changePage(url);
+  }
 }

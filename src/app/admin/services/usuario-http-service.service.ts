@@ -24,4 +24,7 @@ export class UsuarioHttpServiceService {
   getUsuarios(): Observable<usuariosResModel> {
     return this._http.get<usuariosResModel>(environment.apiUrl + 'admin/usuariosPaginate', { headers: this.headers });
   }
+  changePage(url: string) {
+    return this._http.get<usuariosResModel>(url, { headers: this.headers });
+  }
 }
