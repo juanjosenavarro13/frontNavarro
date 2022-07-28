@@ -8,9 +8,8 @@ describe('AdminUsuariosRegistrarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdminUsuariosRegistrarComponent ]
-    })
-    .compileComponents();
+      declarations: [AdminUsuariosRegistrarComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
